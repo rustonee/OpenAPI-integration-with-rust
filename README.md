@@ -1,41 +1,11 @@
-# ChatGPT-rs
+ChatGPT-rs
+The library has been updated to utilize the official OpenAI's ChatGPT API instead of unofficial workarounds.
 
-This library has now been rewritten to use official OpenAI's ChatGPT API, instead of other unofficial workarounds.
+Usage
+Below is a basic example of API usage, obtaining completions for a single message. For more practical illustrations, refer to the examples directory.
 
-## Usage
-
-Here is a simple usage of the API, getting completion for a single message.
-You can see more practical examples in the `examples` directory.
-
-
-```rust
-use chatgpt::prelude::*;
-
-#[tokio::main]
-async fn main() -> Result<()> {
-    // Getting the API key here
-    let key = args().nth(1).unwrap();
-
-    /// Creating a new ChatGPT client.
-    /// Note that it requires an API key, and uses
-    /// tokens from your OpenAI API account balance.
-    let client = ChatGPT::new(key)?;
-
-    /// Sending a message and getting the completion
-    let response: CompletionResponse = client
-        .send_message("Describe in five words the Rust programming language.")
-        .await?;
-
-    println!("Response: {}", response.message().content);
-
-    Ok(())
-}
-```
-
-## Streaming Responses
-
-If you wish to gradually build the response message, you may use the `streams` feature (not enabled by default)
-of the crate, and special methods to request streamed responses.
+Streaming Responses
+If you prefer to construct the response message gradually, you can utilize the streams feature (disabled by default) of the crate. This feature provides special methods to request streamed responses.
 
 Here is an example:
 
